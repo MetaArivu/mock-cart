@@ -17,6 +17,7 @@ package io.fusion.air.microservice;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.MultipartConfigElement;
+import javax.servlet.http.HttpServletRequest;
 
 import io.fusion.air.microservice.server.ServiceConfiguration;
 import io.fusion.air.microservice.server.ServiceHealthController;
@@ -142,12 +143,30 @@ public class ServiceBootStrap {
 	 * @return
 	 */
 	@GetMapping("/")
-	public String home() {
-		log.info("Request to Home Page of Service... ");
+	public String home(HttpServletRequest request) {
+		log.info("Request to Home Page of Service... "+printRequestURI(request));
 		return (serviceConfig == null) ? this.title :
 				this.title.replaceAll("MICRO", serviceConfig.getServiceName())
-							.replaceAll("BN", "" + serviceConfig.getBuildNumber())
-							.replaceAll("BD", serviceConfig.getBuildDate());
+						.replaceAll("BN", "" + serviceConfig.getBuildNumber())
+						.replaceAll("BD", serviceConfig.getBuildDate());
+	}
+
+	/**
+	 * Print the Request
+	 *
+	 * @param request
+	 * @return
+	 */
+	private String printRequestURI(HttpServletRequest request) {
+		StringBuilder sb = new StringBuilder();
+		String[] req = request.getRequestURI().split("/");
+		sb.append("Params Size = "+req.length+" : ");
+		for(int x=0; x < req.length; x++) {
+			sb.append(req[x]).append("|");
+		}
+		sb.append("\n");
+		log.info(sb.toString());
+		return sb.toString();
 	}
 
 	@Bean

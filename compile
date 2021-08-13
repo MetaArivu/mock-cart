@@ -32,6 +32,7 @@ mvn -e package
 echo "---------------------------------------------------------------------------------------"
 cp target/*service*.jar src/docker/
 cp target/libs/* src/docker/libs/
+# - Build Docker Images (this can be done thru maven also)
 # -------------------------------------------------------------------------------------------
 echo "Start the Service using ./run script and then test it with ./test script"
 echo "After the Successful build and Startup of the Service, It should show the Build No. & Date"
