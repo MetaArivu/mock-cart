@@ -13,9 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.fusion.air.microservice.server;
+package io.fusion.air.microservice.server.service;
  
 import io.fusion.air.microservice.server.config.ServiceConfiguration;
+import io.fusion.air.microservice.server.config.ServiceHelp;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Configuration;
@@ -70,7 +72,7 @@ public class ServiceEventListener {
 				+ " :: Build Date = "+serviceConfig.getBuildDate()
 				+ " :: Restart = "+ServiceHelp.getCounter() 
 				+ ServiceHelp.NL + ServiceHelp.DL
-				+ ServiceHelp.NL + "API URL : " + serviceConfig.getAPIURL()
+				+ ServiceHelp.NL + "API URL : " + serviceConfig.apiURL()
 				+ ServiceHelp.NL + ServiceHelp.DL
 				);
 		/**

@@ -19,6 +19,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.fusion.air.microservice.utils.Utils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -54,7 +56,11 @@ public class ServiceConfiguration implements Serializable {
 		sb.append("\"payment.gateway.port\": ").append(paymentGWPort).append(",");
 		sb.append("\"remote.host\": \"").append(remoteHost).append("\",");
 		sb.append("\"remote.port\": ").append(remotePort).append(",");
-		sb.append("\"server.restart\": ").append(serverRestart).append("");
+		sb.append("\"server.restart\": ").append(serverRestart).append(",");
+		sb.append("\"spring.codec.max-in-memory-size\": \"").append(springCodecMaxMemory).append("\",");
+		sb.append("\"token.key\": \"").append(tokenKey).append("\",");
+		sb.append("\"app.property.list\": ").append(Utils.toJsonString(appPropertyList)).append(",");
+		sb.append("\"app.property.map\": ").append(Utils.toJsonString(appPropertyMap));
 		sb.append("}");
 		return sb.toString();
 	}
@@ -90,7 +96,7 @@ public class ServiceConfiguration implements Serializable {
 	private boolean serverRestart;
 	
 	// @Value("${logging.level}")
-	private String loggingLevel;
+	// private String loggingLevel;
 	
 	@Value("${spring.codec.max-in-memory-size:3MB}")
 	private String springCodecMaxMemory;
@@ -99,14 +105,17 @@ public class ServiceConfiguration implements Serializable {
 	private String tokenKey;
 
 	// Get All the System Properties
+	@JsonIgnore
 	@Value("#{systemProperties}")
 	private HashMap<String, String> systemProperties;
 	
 	// Deployed App Property List
+	@JsonIgnore
 	@Value("${app.property.list}")
 	private ArrayList<String> appPropertyList;
 	
 	// Deployed App Properties Map
+	@JsonIgnore
 	@Value("#{${app.property.map}}")
 	private HashMap<String, String> appPropertyMap;
 	
@@ -134,7 +143,7 @@ public class ServiceConfiguration implements Serializable {
 	 * Show the API URL
 	 * @return
 	 */
-	public String getAPIURL() {
+	public String apiURL() {
 		return "http://localhost:"+serverPort+"/"+apiDocPath;
 	}
 
@@ -202,13 +211,6 @@ public class ServiceConfiguration implements Serializable {
 	}
 
 	/**
-	 * @return the loggingLevel
-	 */
-	public String getLoggingLevel() {
-		return loggingLevel;
-	}
-
-	/**
 	 * @return the buildNumber
 	 */
 	public int getBuildNumber() {
@@ -221,12 +223,12 @@ public class ServiceConfiguration implements Serializable {
 	public String getBuildDate() {
 		return buildDate;
 	}
-
+	
 	/**
-	 * @return the systemProperties
+	 * @return the serviceName
 	 */
-	public HashMap<String, String> getSystemProperties() {
-		return systemProperties;
+	public String getServiceName() {
+		return serviceName;
 	}
 
 	/**
@@ -242,11 +244,11 @@ public class ServiceConfiguration implements Serializable {
 	public HashMap<String, String> getAppPropertyMap() {
 		return appPropertyMap;
 	}
-
+	
 	/**
-	 * @return the serviceName
+	 * @return the systemProperties
 	 */
-	public String getServiceName() {
-		return serviceName;
+	public HashMap<String, String> systemProperties() {
+		return systemProperties;
 	}
 }

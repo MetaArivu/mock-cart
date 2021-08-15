@@ -17,8 +17,8 @@ package io.fusion.air.microservice.server.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import io.fusion.air.microservice.server.ServiceHelp;
 import io.fusion.air.microservice.server.config.ServiceConfiguration;
+import io.fusion.air.microservice.server.config.ServiceHelp;
 import io.fusion.air.microservice.server.models.EchoResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -61,7 +61,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RequestMapping("/api/v1/cart/service")
 @RequestScope
 @Tag(name = "System", description = "System (Health, Readiness, ReStart.. etc)")
-public class ServiceHealthController {
+public class HealthController {
 
 	// Set Logger -> Lookup will automatically determine the class name.
 	private static final Logger log = getLogger(lookup().lookupClass());

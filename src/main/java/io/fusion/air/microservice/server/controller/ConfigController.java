@@ -18,10 +18,11 @@ package io.fusion.air.microservice.server.controller;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.fusion.air.microservice.ServiceBootStrap;
-import io.fusion.air.microservice.server.ServiceHelp;
 import io.fusion.air.microservice.server.config.ServiceConfiguration;
+import io.fusion.air.microservice.server.config.ServiceHelp;
 import io.fusion.air.microservice.server.models.EchoData;
 import io.fusion.air.microservice.server.models.EchoResponseData;
+import io.fusion.air.microservice.utils.Utils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -53,7 +54,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 @RequestMapping("/api/v1/cart/config")
 @RequestScope
 @Tag(name = "System", description = "System (Health, Readiness, ReStart.. etc)")
-public class ServiceConfigController {
+public class ConfigController {
 
 	// Set Logger -> Lookup will automatically determine the class name.
 	private static final Logger log = getLogger(lookup().lookupClass());
@@ -100,7 +101,7 @@ public class ServiceConfigController {
 	public ResponseEntity<Map> getEnv(
 			HttpServletRequest request) throws Exception {
 		log.info(name()+"|Request to Get Environment Vars Check.. ");
-		HashMap<String, String> sysProps = serviceConfig.getSystemProperties();
+		HashMap<String, String> sysProps = serviceConfig.systemProperties();
 		return ResponseEntity.ok(sysProps);
 	}
 
@@ -122,11 +123,14 @@ public class ServiceConfigController {
 				.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
 				.findAndRegisterModules();
 		//  log.info("Pass 2");
-		// String json = om.writeValueAsString(serviceConfig);
-		String json = serviceConfig.toJSONString();
+		 String json = serviceConfig.toJSONString();
 		//  log.info("Pass 3");
-		log.info(name()+"|Request to Get ServiceConfiguration .. "+json);
-		//  log.info("Pass 4");
+		log.info(name()+"|Request to Get ServiceConfiguration .1. "+json);
+		// String json2 = Utils.toJsonString(serviceConfig);
+		// log.info(name()+"|Request to Get ServiceConfiguration .2. "+json2);
+		// log.info("Pass 4");
+		// EchoResponseData erd = new EchoResponseData();
+		// return ResponseEntity.ok(Utils.toJsonString(erd));
 		return ResponseEntity.ok(serviceConfig.toJSONString());
 	}
 

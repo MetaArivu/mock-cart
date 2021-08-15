@@ -34,6 +34,7 @@ cp target/*service*.jar src/docker/
 cp target/libs/* src/docker/libs/
 echo "Copy the Property File to the Docker Directory (src/docker)"
 cp src/main/resources/application.properties src/docker/
+cp src/main/resources/application.properties .
 # - Build Docker Images (this can be done thru maven also)
 # -------------------------------------------------------------------------------------------
 echo "Start the Service using ./run script and then test it with ./test script"

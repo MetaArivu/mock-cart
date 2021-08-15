@@ -20,7 +20,7 @@ import javax.servlet.MultipartConfigElement;
 import javax.servlet.http.HttpServletRequest;
 
 import io.fusion.air.microservice.server.config.ServiceConfiguration;
-import io.fusion.air.microservice.server.controller.ServiceHealthController;
+import io.fusion.air.microservice.server.controller.HealthController;
 import org.slf4j.Logger;
 import org.springdoc.core.GroupedOpenApi;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,9 +53,12 @@ import java.util.Arrays;
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.slf4j.LoggerFactory.getLogger;
 
+import static io.fusion.air.microservice.server.config.ServiceHelp.API_BASE;
+import static io.fusion.air.microservice.server.config.ServiceHelp.VERSION;;
+
 /**
  * Micro Service - Spring Boot Application
- * API URL : http://localhost:9090/swagger-ui.html
+ * API URL : http://localhost:9090/api/v1/service/swagger-ui.html
  *
  * @author arafkarsh
  */
@@ -91,7 +94,7 @@ public class ServiceBootStrap {
 		// Start the Server
 		start(args);
 
-		// API URL : http://localhost:9090/servicecname/swagger-ui.html
+		// API URL : http://localhost:9090/api/v1/service/swagger-ui.html
 	}
 
 	/**
@@ -199,25 +202,25 @@ public class ServiceBootStrap {
 	public GroupedOpenApi appPublicApi() {
 		return GroupedOpenApi.builder()
 				.group(serviceName+"-service-"+serviceName)
-				.pathsToMatch("/api/v1/"+serviceName.toLowerCase()+"/**")
-				.pathsToExclude("/api/v1/"+serviceName.toLowerCase()+"/service/**")
-				.pathsToExclude("/api/v1/"+serviceName.toLowerCase()+"/config/**")
+				.pathsToMatch(API_BASE+serviceName.toLowerCase()+"/**")
+				.pathsToExclude(API_BASE+serviceName.toLowerCase()+"/service/**")
+				.pathsToExclude(API_BASE+serviceName.toLowerCase()+"/config/**")
 				.build();
 	}
 
 	/**
 	 * Open API v3 Docs - Core Service
 	 * Reference: https://springdoc.org/faq.html
-	 * Change the Resource Mapping in ServiceHealthController
+	 * Change the Resource Mapping in HealthController
 	 *
-	 * @see ServiceHealthController
+	 * @see HealthController
 	 */
 	@Bean
 	public GroupedOpenApi corePublicApi() {
 		return GroupedOpenApi.builder()
 				.group(serviceName+"-service-core")
-				.pathsToMatch("/api/v1/"+serviceName.toLowerCase()+"/service/**")
-				.pathsToMatch("/api/v1/"+serviceName.toLowerCase()+"/config/**")
+				.pathsToMatch(API_BASE+serviceName.toLowerCase()+"/service/**")
+				.pathsToMatch(API_BASE+serviceName.toLowerCase()+"/config/**")
 				.build();
 	}
 
@@ -232,7 +235,7 @@ public class ServiceBootStrap {
 				.info(new Info()
 						.title(serviceName+" Microservice")
 						.description(serviceName+" Microservices")
-						.version("v0.1.0")
+						.version(VERSION)
 						.license(new License().name("License: Apache 2.0")
 								.url("http://www.metarivu.com"))
 				)

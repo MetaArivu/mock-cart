@@ -13,14 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.fusion.air.microservice.server;
+package io.fusion.air.microservice.server.config;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.annotation.PostConstruct;
 
-import io.fusion.air.microservice.server.config.ServiceConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -42,6 +41,9 @@ public class ServiceHelp {
 	private static final Logger log = getLogger(lookup().lookupClass());
 	
 	private static int counter;
+	
+	public final static String API = "/api/";
+	public final static String API_BASE = API + "v1/";
 	
 	@Autowired
 	private ServiceConfiguration serviceConfig;
@@ -80,7 +82,7 @@ public class ServiceHelp {
 	 */
 	@PostConstruct
 	public void printProperties() {
-		HashMap<String, String> sysProps = serviceConfig.getSystemProperties();
+		HashMap<String, String> sysProps = serviceConfig.systemProperties();
 
 		// Environment Variables
 		for(String key: sysProps.keySet()) {
