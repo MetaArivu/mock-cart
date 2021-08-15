@@ -15,12 +15,12 @@
  */
 package io.fusion.air.microservice.server;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.annotation.PostConstruct;
 
+import io.fusion.air.microservice.server.config.ServiceConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -81,21 +81,25 @@ public class ServiceHelp {
 	@PostConstruct
 	public void printProperties() {
 		HashMap<String, String> sysProps = serviceConfig.getSystemProperties();
-		/**
-		for(String s: sysProps.keySet()) {
-			log.info("|System Property List  = "+s);
-			// System.out.println(LocalDateTime.now()+"|System Property List  = "+s);
+
+		// Environment Variables
+		for(String key: sysProps.keySet()) {
+			log.info("|System Property Key   = "+key+" | Value = "+sysProps.get(key));
+			// System.out.println(LocalDateTime.now()+"|System Property List  = "+key);
 		}
-		*/
+
+		// Property Map (Application.Properties)
+		HashMap<String, String> map = serviceConfig.getAppPropertyMap();
+		for(String k : map.keySet()) {
+			log.info("|Service Property Key  = "+k+" | Value = "+map.get(k));
+			// System.out.println(LocalDateTime.now()+"|Service Property Map  = "+k+" | Value = "+map.get(k));
+		}
+
+		// Property List (Application.properties)
 		ArrayList<String> properties = serviceConfig.getAppPropertyList();
 		for(String p: properties) {
 			log.info("|Service Property List = "+p);
 			// System.out.println(LocalDateTime.now()+"|Service Property List = "+p);
-		}
-		HashMap<String, String> map = serviceConfig.getAppPropertyMap();
-		for(String k : map.keySet()) {
-			log.info("|Service Property Map  = "+k+" | Value = "+map.get(k));
-			// System.out.println(LocalDateTime.now()+"|Service Property Map  = "+k+" | Value = "+map.get(k));
 		}
  	}
 }

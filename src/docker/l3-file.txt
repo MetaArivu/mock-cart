@@ -1,0 +1,99 @@
+Checking logs for Container = mock-cart and Container ID = 8cb2f1d980dc
+12:11:57.823 [main] INFO io.fusion.air.microservice.ServiceBootStrap - Booting Service ..... ..
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.5.3)
+
+2021-08-15 12:12:00.327  INFO [,,] 1 --- [           main] i.f.air.microservice.ServiceBootStrap    : Starting ServiceBootStrap using Java 1.8.0_181 on 8cb2f1d980dc with PID 1 (/Softwares/service/cart-service-0.1.0-spring-boot.jar started by arivu in /home/arivu)
+2021-08-15 12:12:00.330  INFO [,,] 1 --- [           main] i.f.air.microservice.ServiceBootStrap    : No active profile set, falling back to default profiles: default
+2021-08-15 12:12:06.070  INFO [,,] 1 --- [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=ca6b8f0e-6e46-3bf7-8c60-947c1ee14b7a
+2021-08-15 12:12:06.922  INFO [,,] 1 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$e3c4fd26] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-08-15 12:12:07.366  INFO [,,] 1 --- [           main] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2021-08-15 12:12:09.684  INFO [,,] 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9090 (http)
+2021-08-15 12:12:09.730  INFO [,,] 1 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-08-15 12:12:09.731  INFO [,,] 1 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021-08-15 12:12:09.978  INFO [,,] 1 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-08-15 12:12:09.979  INFO [,,] 1 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 9401 ms
+2021-08-15 12:12:11.820  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = awt.toolkit | Value = sun.awt.X11.XToolkit
+2021-08-15 12:12:11.820  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = file.encoding.pkg | Value = sun.io
+2021-08-15 12:12:11.821  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = java.specification.version | Value = 1.8
+2021-08-15 12:12:11.821  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = sun.cpu.isalist | Value = 
+2021-08-15 12:12:11.821  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = sun.jnu.encoding | Value = UTF-8
+2021-08-15 12:12:11.821  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = java.class.path | Value = /Softwares/service/cart-service-0.1.0-spring-boot.jar
+2021-08-15 12:12:11.822  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = java.vm.vendor | Value = Oracle Corporation
+2021-08-15 12:12:11.822  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = sun.arch.data.model | Value = 64
+2021-08-15 12:12:11.822  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = java.vendor.url | Value = http://java.oracle.com/
+2021-08-15 12:12:11.823  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = user.timezone | Value = GMT
+2021-08-15 12:12:11.823  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = os.name | Value = Linux
+2021-08-15 12:12:11.823  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = java.vm.specification.version | Value = 1.8
+2021-08-15 12:12:11.824  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = sun.java.launcher | Value = SUN_STANDARD
+2021-08-15 12:12:11.824  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = sun.boot.library.path | Value = /opt/jdk1.8.0_181/jre/lib/amd64
+2021-08-15 12:12:11.824  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = sun.java.command | Value = /Softwares/service/cart-service-0.1.0-spring-boot.jar
+2021-08-15 12:12:11.824  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = sun.cpu.endian | Value = little
+2021-08-15 12:12:11.825  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = user.home | Value = /home/arivu
+2021-08-15 12:12:11.825  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = user.language | Value = en
+2021-08-15 12:12:11.825  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = java.specification.vendor | Value = Oracle Corporation
+2021-08-15 12:12:11.826  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = java.home | Value = /opt/jdk1.8.0_181/jre
+2021-08-15 12:12:11.826  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = file.separator | Value = /
+2021-08-15 12:12:11.826  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = line.separator | Value = 
+
+2021-08-15 12:12:11.827  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = java.vm.specification.vendor | Value = Oracle Corporation
+2021-08-15 12:12:11.827  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = java.specification.name | Value = Java Platform API Specification
+2021-08-15 12:12:11.827  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = FILE_LOG_CHARSET | Value = UTF-8
+2021-08-15 12:12:11.828  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = java.awt.graphicsenv | Value = sun.awt.X11GraphicsEnvironment
+2021-08-15 12:12:11.828  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = java.awt.headless | Value = true
+2021-08-15 12:12:11.828  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = LOG_LEVEL_PATTERN | Value = %5p [,%X{traceId:-},%X{spanId:-}]
+2021-08-15 12:12:11.829  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = sun.boot.class.path | Value = /opt/jdk1.8.0_181/jre/lib/resources.jar:/opt/jdk1.8.0_181/jre/lib/rt.jar:/opt/jdk1.8.0_181/jre/lib/sunrsasign.jar:/opt/jdk1.8.0_181/jre/lib/jsse.jar:/opt/jdk1.8.0_181/jre/lib/jce.jar:/opt/jdk1.8.0_181/jre/lib/charsets.jar:/opt/jdk1.8.0_181/jre/lib/jfr.jar:/opt/jdk1.8.0_181/jre/classes
+2021-08-15 12:12:11.829  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = java.protocol.handler.pkgs | Value = org.springframework.boot.loader
+2021-08-15 12:12:11.829  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = sun.management.compiler | Value = HotSpot 64-Bit Tiered Compilers
+2021-08-15 12:12:11.830  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = java.runtime.version | Value = 1.8.0_181-b13
+2021-08-15 12:12:11.830  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = user.name | Value = arivu
+2021-08-15 12:12:11.830  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = path.separator | Value = :
+2021-08-15 12:12:11.830  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = os.version | Value = 5.10.25-linuxkit
+2021-08-15 12:12:11.831  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = java.endorsed.dirs | Value = /opt/jdk1.8.0_181/jre/lib/endorsed
+2021-08-15 12:12:11.831  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = java.runtime.name | Value = Java(TM) SE Runtime Environment
+2021-08-15 12:12:11.831  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = file.encoding | Value = UTF-8
+2021-08-15 12:12:11.832  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = spring.beaninfo.ignore | Value = true
+2021-08-15 12:12:11.832  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = java.vm.name | Value = Java HotSpot(TM) 64-Bit Server VM
+2021-08-15 12:12:11.832  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = java.vendor.url.bug | Value = http://bugreport.sun.com/bugreport/
+2021-08-15 12:12:11.832  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = java.io.tmpdir | Value = /tmp
+2021-08-15 12:12:11.833  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = java.version | Value = 1.8.0_181
+2021-08-15 12:12:11.833  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = user.dir | Value = /home/arivu
+2021-08-15 12:12:11.833  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = os.arch | Value = amd64
+2021-08-15 12:12:11.834  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = PID | Value = 1
+2021-08-15 12:12:11.834  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = java.vm.specification.name | Value = Java Virtual Machine Specification
+2021-08-15 12:12:11.834  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = java.awt.printerjob | Value = sun.print.PSPrinterJob
+2021-08-15 12:12:11.835  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = sun.os.patch.level | Value = unknown
+2021-08-15 12:12:11.835  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = CONSOLE_LOG_CHARSET | Value = UTF-8
+2021-08-15 12:12:11.835  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = java.library.path | Value = /usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib
+2021-08-15 12:12:11.836  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = java.vm.info | Value = mixed mode
+2021-08-15 12:12:11.836  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = java.vendor | Value = Oracle Corporation
+2021-08-15 12:12:11.837  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = java.vm.version | Value = 25.181-b13
+2021-08-15 12:12:11.837  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = java.ext.dirs | Value = /opt/jdk1.8.0_181/jre/lib/ext:/usr/java/packages/lib/ext
+2021-08-15 12:12:11.837  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = sun.io.unicode.encoding | Value = UnicodeLittle
+2021-08-15 12:12:11.838  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |System Property Key   = java.class.version | Value = 52.0
+2021-08-15 12:12:11.838  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |Service Property Key  = key1 | Value = val1
+2021-08-15 12:12:11.838  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |Service Property Key  = key2 | Value = val2
+2021-08-15 12:12:11.838  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |Service Property Key  = key3 | Value = val3
+2021-08-15 12:12:11.839  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |Service Property List = element1
+2021-08-15 12:12:11.839  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |Service Property List = element2
+2021-08-15 12:12:11.839  INFO [,,] 1 --- [           main] i.f.air.microservice.server.ServiceHelp  : |Service Property List = element3
+2021-08-15 12:12:12.821  INFO [,,] 1 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2021-08-15 12:12:17.697  INFO [,,] 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9090 (http) with context path ''
+2021-08-15 12:12:17.773  INFO [,,] 1 --- [           main] i.f.air.microservice.ServiceBootStrap    : Started ServiceBootStrap in 19.245 seconds (JVM running for 21.565)
+2021-08-15 12:12:17.914  INFO [,,] 1 --- [           main] i.f.a.m.server.ServiceEventListener      : Service is getting ready...... 
+2021-08-15 12:12:17.924  INFO [,,] 1 --- [           main] i.f.a.m.server.ServiceEventListener      : |cpus=4|PCPU=0.00|SCPU=0.22|FM=305 MB|TM=478 MB|FSMem=4.50 GB|TSMem=5.81 GB|OFD=20/1048576|FSwap=552 MB|TSwap=1023 MB
+2021-08-15 12:12:17.925  INFO [,,] 1 --- [           main] i.f.a.m.server.ServiceEventListener      : Cart Service is ready! ....... ...
+============================================================================
+:: Cart Service :: (v0.1.0) 
+============================================================================
+Build No. = 5 :: Build Date = Sun Aug 15 17:16:20 IST 2021 :: Restart = 1
+----------------------------------------------------------------------------
+API URL : http://localhost:9090//api/v1/cart/swagger-ui.html
+----------------------------------------------------------------------------
+2021-08-15 12:12:17.926  INFO [,,] 1 --- [           main] i.f.air.microservice.ServiceBootStrap    : Booting Service ..... ...Startup completed!

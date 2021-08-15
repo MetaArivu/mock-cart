@@ -13,8 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.fusion.air.microservice.server;
+package io.fusion.air.microservice.server.config;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -32,10 +33,31 @@ import org.springframework.stereotype.Component;
 @Component
 @Configuration
 @PropertySource(
-		name = "serviceConfig", 
-		value = "classpath:application.properties")
-public class ServiceConfiguration {
+		name = "serviceConfig",
+		// Expects file in the directory the jar is executed
+		value = "file:./application.properties")
+		// Expects the file in src/main/resources folder
+		// value = "classpath:application.properties")
+		// value = "classpath:application2.properties,file:./application.properties")
+public class ServiceConfiguration implements Serializable {
 
+	public String toJSONString()  {
+		StringBuilder sb = new StringBuilder();
+		sb.append("{");
+		sb.append("\"springdoc.swagger-ui.path\": \"").append(apiDocPath).append("\",");
+		sb.append("\"service.name\": \"").append(serviceName).append("\",");
+		sb.append("\"build.number\": ").append(buildNumber).append(",");
+		sb.append("\"build.date\": \"").append(buildDate).append("\",");
+		sb.append("\"serverVersion\": \"").append(serverVersion).append("\",");
+		sb.append("\"server.port\": ").append(serverPort).append(",");
+		sb.append("\"payment.gateway.host\": \"").append(paymentGWHost).append("\",");
+		sb.append("\"payment.gateway.port\": ").append(paymentGWPort).append(",");
+		sb.append("\"remote.host\": \"").append(remoteHost).append("\",");
+		sb.append("\"remote.port\": ").append(remotePort).append(",");
+		sb.append("\"server.restart\": ").append(serverRestart).append("");
+		sb.append("}");
+		return sb.toString();
+	}
 	@Value("${springdoc.swagger-ui.path}")
 	private String apiDocPath;
 	

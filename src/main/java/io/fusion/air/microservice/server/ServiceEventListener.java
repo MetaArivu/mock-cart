@@ -15,6 +15,7 @@
  */
 package io.fusion.air.microservice.server;
  
+import io.fusion.air.microservice.server.config.ServiceConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Configuration;
@@ -25,8 +26,6 @@ import io.fusion.air.microservice.utils.CPU;
 //Logging System
 import org.slf4j.Logger;
 import static org.slf4j.LoggerFactory.getLogger;
-
-import java.time.LocalDateTime;
 
 import static java.lang.invoke.MethodHandles.lookup;
 
@@ -42,7 +41,7 @@ public class ServiceEventListener {
 	private static final Logger log = getLogger(lookup().lookupClass());
 	
 	@Autowired
-	private ServiceConfiguration  serviceConfig;
+	private ServiceConfiguration serviceConfig;
 	
 	/**
 	 * 

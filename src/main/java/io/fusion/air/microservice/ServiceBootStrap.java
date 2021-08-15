@@ -19,8 +19,8 @@ import javax.annotation.PostConstruct;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.http.HttpServletRequest;
 
-import io.fusion.air.microservice.server.ServiceConfiguration;
-import io.fusion.air.microservice.server.ServiceHealthController;
+import io.fusion.air.microservice.server.config.ServiceConfiguration;
+import io.fusion.air.microservice.server.controller.ServiceHealthController;
 import org.slf4j.Logger;
 import org.springdoc.core.GroupedOpenApi;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +36,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.util.unit.DataSize;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.stereotype.Controller;
-import org.springframework.util.unit.DataSize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -45,14 +43,11 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 
-import javax.annotation.PostConstruct;
-import java.time.LocalDateTime;
 import java.util.Arrays;
 
 import static java.lang.invoke.MethodHandles.lookup;
@@ -159,13 +154,14 @@ public class ServiceBootStrap {
 	 */
 	private String printRequestURI(HttpServletRequest request) {
 		StringBuilder sb = new StringBuilder();
+		sb.append("URI: ").append(request.getRequestURI());
 		String[] req = request.getRequestURI().split("/");
 		sb.append("Params Size = "+req.length+" : ");
 		for(int x=0; x < req.length; x++) {
 			sb.append(req[x]).append("|");
 		}
 		sb.append("\n");
-		log.info(sb.toString());
+		log.info("HttpServletRequest: ["+sb.toString()+"]");
 		return sb.toString();
 	}
 
@@ -205,6 +201,7 @@ public class ServiceBootStrap {
 				.group(serviceName+"-service-"+serviceName)
 				.pathsToMatch("/api/v1/"+serviceName.toLowerCase()+"/**")
 				.pathsToExclude("/api/v1/"+serviceName.toLowerCase()+"/service/**")
+				.pathsToExclude("/api/v1/"+serviceName.toLowerCase()+"/config/**")
 				.build();
 	}
 
@@ -220,6 +217,7 @@ public class ServiceBootStrap {
 		return GroupedOpenApi.builder()
 				.group(serviceName+"-service-core")
 				.pathsToMatch("/api/v1/"+serviceName.toLowerCase()+"/service/**")
+				.pathsToMatch("/api/v1/"+serviceName.toLowerCase()+"/config/**")
 				.build();
 	}
 

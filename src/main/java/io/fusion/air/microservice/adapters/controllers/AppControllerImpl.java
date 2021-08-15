@@ -15,11 +15,8 @@
  */
 package io.fusion.air.microservice.adapters.controllers;
 
-import io.fusion.air.microservice.ServiceBootStrap;
 import io.fusion.air.microservice.domain.models.*;
-import io.fusion.air.microservice.server.EchoData;
-import io.fusion.air.microservice.server.EchoResponseData;
-import io.fusion.air.microservice.server.ServiceConfiguration;
+import io.fusion.air.microservice.server.config.ServiceConfiguration;
 import io.fusion.air.microservice.server.ServiceHelp;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -35,7 +32,6 @@ import org.springframework.web.context.annotation.RequestScope;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.slf4j.LoggerFactory.getLogger;
