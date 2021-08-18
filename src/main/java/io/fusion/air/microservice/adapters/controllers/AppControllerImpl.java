@@ -18,6 +18,7 @@ package io.fusion.air.microservice.adapters.controllers;
 import io.fusion.air.microservice.domain.models.*;
 import io.fusion.air.microservice.server.config.ServiceConfiguration;
 import io.fusion.air.microservice.server.config.ServiceHelp;
+import io.fusion.air.microservice.server.controller.AbstractController;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -32,6 +33,8 @@ import org.springframework.web.context.annotation.RequestScope;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.slf4j.LoggerFactory.getLogger;
@@ -45,75 +48,62 @@ import static org.slf4j.LoggerFactory.getLogger;
  */
 @Configuration
 @RestController
-@RequestMapping("/api/v1/cart")
+// "/api/v1/cart"
+@RequestMapping("${service.api.path}")
 @RequestScope
 @Tag(name = "Cart", description = "Cart Service ")
-public class AppControllerImpl {
+public class AppControllerImpl extends AbstractController {
 
 	// Set Logger -> Lookup will automatically determine the class name.
 	private static final Logger log = getLogger(lookup().lookupClass());
-	
+
 	@Autowired
 	private ServiceConfiguration serviceConfig;
 
 	private String serviceName;
 
 	/**
-	 * Returns the Service Name
-	 * @return
-	 */
-	private String name() {
-		if(serviceName == null) {
-			if(serviceConfig == null) {
-				log.info(LocalDateTime.now() + "|" + name() + "|Error Autowiring Service config!!!");
-				serviceName = "NoServiceName";
-			} else {
-				serviceName = serviceConfig.getServiceName() + "Service";
-				log.info("|"+name()+"|Version="+ServiceHelp.VERSION);
-			}
-		}
-		return serviceName;
-	}
-
-	/**
 	 * Retrieve the Shopping Cart
-	 * 
+	 *
 	 * @return
 	 */
-    @Operation(summary = "Get the Cart")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-            description = "Get the Cart",
-            content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404",
-            description = "Invalid Cart Reference No.",
-            content = @Content)
-    })
-	@GetMapping("/{cartId}")
+	@Operation(summary = "Get the Cart")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200",
+					description = "Get the Cart",
+					content = {@Content(mediaType = "application/json")}),
+			@ApiResponse(responseCode = "404",
+					description = "Invalid Cart Reference No.",
+					content = @Content)
+	})
+	@GetMapping("/fetch/{cartId}")
 	@ResponseBody
-	public ResponseEntity<CartEntity> getCart(@PathVariable("cartId") String _cartId,
-			HttpServletRequest request) throws Exception {
-		log.info("|"+name()+"|Get Cart ... ");
+	public ResponseEntity<CartEntity> getCart(@PathVariable("cartId") String _cartId) throws Exception {
+		log.info("|" + name() + "|Get Cart ... "+_cartId);
 		return ResponseEntity.ok(new CartEntity());
 	}
 
 	/**
 	 * Add to the Cart
 	 */
-    @Operation(summary = "Add to Cart")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-            description = "Add to the Cart",
-            content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404",
-            description = "Unable to add item to the Cart",
-            content = @Content)
-    })
-    @PostMapping("/additem")
-    public ResponseEntity<String> addToCart(@RequestBody CartItem _cartItem) {
-		log.info("|"+name()+"|Add Item to Cart ... ");
-		return ResponseEntity.ok("");
-    }
+	@Operation(summary = "Add to Cart")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200",
+					description = "Add to the Cart",
+					content = {@Content(mediaType = "application/json")}),
+			@ApiResponse(responseCode = "404",
+					description = "Unable to add item to the Cart",
+					content = @Content)
+	})
+	@PostMapping("/additem")
+	public ResponseEntity<Map<String,Object>>  addToCart(@RequestBody CartItem _cartItem) {
+		log.info("|" + name() + "|Add Item to Cart ... ");
+		HashMap<String,Object> status = new HashMap<String,Object>();
+		status.put("Code", 200);
+		status.put("Status", true);
+		status.put("Message","Item added to Cart!");
+		return ResponseEntity.ok(status);
+	}
 
 	/**
 	 * Add to the Cart
@@ -128,9 +118,13 @@ public class AppControllerImpl {
 					content = @Content)
 	})
 	@PostMapping("/add")
-	public ResponseEntity<String> addCart(@RequestBody CartEntity _cartEntity) {
-		log.info("|"+name()+"|Add Item to Cart ... ");
-		return ResponseEntity.ok("");
+	public ResponseEntity<Map<String,Object>>  addCart(@RequestBody CartEntity _cartEntity) {
+		log.info("|" + name() + "|Add New Cart ... ");
+		HashMap<String,Object> status = new HashMap<String,Object>();
+		status.put("Code", 200);
+		status.put("Status", true);
+		status.put("Message","Cart added!");
+		return ResponseEntity.ok(status);
 	}
 
 	/**
@@ -139,16 +133,20 @@ public class AppControllerImpl {
 	@Operation(summary = "Delete Item from Cart")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200",
-					description = "Delete Item from the Cart",
+					description = "Item deleted from the Cart",
 					content = {@Content(mediaType = "application/json")}),
 			@ApiResponse(responseCode = "404",
 					description = "Unable to Delete Item from the Cart",
 					content = @Content)
 	})
 	@DeleteMapping("/delete/{itemId}")
-	public ResponseEntity<String> deleteItem(@PathVariable("itemId") String _itemId) {
-		log.info("|"+name()+"|Delete Item from the Cart ... ");
-		return ResponseEntity.ok("200:Cancellation-OK");
+	public ResponseEntity<Map<String,Object>> deleteItem(@PathVariable("itemId") String _itemId) {
+		log.info("|" + name() + "|Delete Item from the Cart ... "+_itemId);
+		HashMap<String,Object> status = new HashMap<String,Object>();
+		status.put("Code", 200);
+		status.put("Status", true);
+		status.put("Message","Item "+_itemId+" deleted!");
+		return ResponseEntity.ok(status);
 	}
 
 	/**
@@ -164,27 +162,12 @@ public class AppControllerImpl {
 					content = @Content)
 	})
 	@PutMapping("/update/")
-	public ResponseEntity<String> updateItem(@RequestBody CartItem _cartItem) {
-		log.info("|"+name()+"|Request to Update cart item... ");
-		return ResponseEntity.ok("200:Update-OK");
+	public ResponseEntity<Map<String,Object>> updateItem(@RequestBody CartItem _cartItem) {
+		log.info("|" + name() + "|Request to Update cart item... ");
+		HashMap<String,Object> status = new HashMap<String,Object>();
+		status.put("Code", 200);
+		status.put("Status", true);
+		status.put("Message","Cart is updated!");
+		return ResponseEntity.ok(status);
 	}
-
-	/**
-	 * Print the Request
-	 * 
-	 * @param request
-	 * @return
-	 */
-	private String printRequestURI(HttpServletRequest request) {
-		StringBuilder sb = new StringBuilder();
-		String[] req = request.getRequestURI().split("/");
-		sb.append("Params Size = "+req.length+" : ");
-		for(int x=0; x < req.length; x++) {
-			sb.append(req[x]).append("|");
-		}
- 		sb.append("\n");
-		log.info(sb.toString());
-		return sb.toString();
-	}
- }
-
+}
